@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="en"><head><script>window["__codeletBootstrap__"]=JSON.parse('{"A":"A","B":"20260727-05-609cca1"}');</script><script src="/_sdk/728f18890c0241e5.telemetry_sdk.js" integrity="sha512-cMy0xd29wRWs8nyV19fws/+pwQ0u98A3fewCalZ/OWXQXUwzmcx7jKUuZ511uTJlUe1gP0Undii48zuekOylMw=="></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Python Bootcamp</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
+  <style>
+        :root {
+            --bg-main: #0F172A;
+            --bg-card: #1E293B;
+            --bg-panel: #243247;
+            --python-blue: #3776AB;
+            --cyan: #4FC3F7;
+            --green: #4CAF50;
+            --amber: #FFC107;
+            --red: #F44336;
+            --text-primary: #F8FAFC;
+            --text-secondary: #CBD5E1;
+            --text-muted: #94A3B8;
+        }
+        body { font-family: 'DM Sans', sans-serif; background: var(--bg-main); color: var(--text-primary); }
+        .mono { font-family: 'Space Mono', monospace; }
+        .btn-primary { background: var(--python-blue); color: #fff; padding: 0.75rem 1.5rem; border-radius: 0.5rem; font-weight: 700; transition: all 0.2s; }
+        .btn-primary:hover { background: #4a90c4; transform: translateY(-1px); }
+        .btn-primary:focus-visible { outline: 3px solid var(--cyan); outline-offset: 2px; }
+        .btn-primary:active { transform: translateY(0); }
+        .btn-secondary { background: var(--bg-panel); color: var(--cyan); border: 1px solid var(--cyan); padding: 0.75rem 1.5rem; border-radius: 0.5rem; font-weight: 500; transition: all 0.2s; }
+        .btn-secondary:hover { background: rgba(79,195,247,0.1); }
+        .btn-secondary:focus-visible { outline: 3px solid var(--cyan); outline-offset: 2px; }
+        .mission-card { background: var(--bg-card); border: 1px solid rgba(79,195,247,0.15); border-radius: 1rem; padding: 1.5rem; transition: all 0.3s; }
+        .mission-card:hover { border-color: var(--cyan); box-shadow: 0 0 20px rgba(79,195,247,0.1); }
+        .modal-backdrop { background: rgba(0,0,0,0.7); backdrop-filter: blur(4px); }
+        .section-container { max-width: 72rem; margin: 0 auto; padding: 4rem 1.5rem; }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+        }
+        .fade-in { animation: fadeIn 0.6s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .stage-badge { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; padding: 0.25rem 0.75rem; border-radius: 9999px; }
+    </style>
+  <script src="/_sdk/935a53bc2e11fb8d.data_sdk.js" type="text/javascript" integrity="sha512-qr2oyPnEys1WebcOABaRh6hG77r5PWpqeWW6JTKbRJqly/INsfBi31CVNlTmHqjgeLpkVmmHZJUdxSx/32tOFQ=="></script>
+  <script src="/_sdk/6030e540d4419216.resizing_sdk.js" type="text/javascript" integrity="sha512-b5KWzyoXsbWP4smq4sftIi6Kts4YVBpBsz0BwCViwbBJkK64a3/Z6ZMdWA+qnplNcXw4mhZeqvQi3mOosiRJdA=="></script>
+ </head>
+ <body data-template-id="__page-root" class="w-full min-h-screen" style="background: rgb(15, 23, 42);">
+  <script src="/_sdk/0a2c59aba90bafcf.editing_sdk.js" integrity="sha512-oJ0eVi6NgEzXGPCIPXJiGxB6ZRyIzQ1VF+WywtAc5NXBkRu8KT/0qsMQvecuVbkhSpdfToUqXoPwRVBZaa+Xxw=="></script><!-- Hero -->
+  <header class="relative overflow-hidden" style="background: linear-gradient(135deg, #0F172A 0%, #1a2744 50%, #0F172A 100%);">
+   <div class="absolute inset-0 opacity-10">
+    <div style="background-image: radial-gradient(circle at 20% 50%, rgba(55,118,171,0.3) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(79,195,247,0.2) 0%, transparent 40%); width:100%; height:100%;"></div>
+   </div>
+   <div class="section-container relative z-10 text-center">
+    <p data-template-id="hero-eyebrow" class="canva-text mono text-sm tracking-widest mb-4" style="color: rgb(79, 195, 247); font-weight: 700; font-style: normal; font-size: 16px;">PYTHON TRAINING COMMAND CENTER</p>
+    <h1 data-template-id="hero-title" class="canva-text font-bold mb-2" style="font-size: 32px; color: rgb(248, 250, 252); font-weight: 700; font-style: normal;">Python Bootcamp</h1>
+    <p data-template-id="hero-subtitle" class="canva-text text-2xl mb-6" style="color: rgb(203, 213, 225); font-weight: 500; font-style: normal; font-size: 16px;">System Initialization</p>
+    <div data-template-id="hero-role" class="canva-tag inline-block mono text-sm px-4 py-2 rounded-full mb-6" style="background: rgba(55, 118, 171, 0.3); border: 1px solid var(--python-blue); color: rgb(79, 195, 247); font-weight: 400; font-style: normal; font-size: 16px;">Your Role: Junior Python Developer</div>
+    <p data-template-id="hero-desc" class="canva-text max-w-3xl mx-auto mb-8" style="color: rgb(203, 213, 225); font-size: 16px; font-weight: 400; font-style: normal;">Complete four progressive programming missions to understand data storage, apply variable-naming rules, repair syntax errors, and build a working Python program.</p>
+    <div class="flex flex-wrap justify-center gap-6 mb-8 text-sm"><span class="mono px-3 py-1 rounded" style="background: var(--bg-panel); color: var(--cyan);">4 Missions</span> <span class="mono px-3 py-1 rounded" style="background: var(--bg-panel); color: var(--cyan);">Diploma Level</span> <span class="mono px-3 py-1 rounded" style="background: var(--bg-panel); color: var(--cyan);">Individual Mode</span> <span class="mono px-3 py-1 rounded" style="background: var(--bg-panel); color: var(--cyan);">45–65 Minutes</span>
+    </div>
+    <div class="flex flex-wrap justify-center gap-4 mb-8"><button data-template-id="hero-cta" class="canva-button btn-primary" onclick="scrollToSection('mission-sequence')" style="background: rgb(55, 118, 171); color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 16px;">View Mission Sequence</button> <button data-template-id="hero-howto" class="canva-button btn-secondary" onclick="openModal('howto-modal')" style="color: rgb(79, 195, 247); font-weight: 400; font-style: normal; font-size: 16px;">How to Play</button>
+    </div>
+    <div class="inline-block text-left p-4 rounded-lg" style="background: var(--bg-card); border: 1px solid rgba(79,195,247,0.2);">
+     <p class="text-xs uppercase tracking-wider mb-2" style="color: var(--text-muted);">System Status</p>
+     <p class="text-sm"><span style="color: var(--green);">●</span> Training Status: <span class="mono" style="color: var(--green);">Ready</span></p>
+     <p class="text-sm">Mission Sequence: <span class="mono" style="color: var(--cyan);">1 → 2 → 3 → 4</span></p>
+     <p class="text-sm">Final Objective: <span style="color: var(--text-secondary);">Build a simple Python program</span></p>
+    </div>
+   </div>
+  </header>
+  <main><!-- Mission Brief -->
+   <section class="section-container" style="background: var(--bg-card);">
+    <h2 data-template-id="brief-heading" class="canva-text font-bold text-center mb-6" style="color: rgb(248, 250, 252); font-weight: 700; font-style: normal; font-size: 24px;">Your Bootcamp Assignment</h2>
+    <div class="max-w-3xl mx-auto">
+     <p data-template-id="brief-story" class="canva-text mb-4" style="color: rgb(203, 213, 225); line-height: 1.8; font-weight: 400; font-style: normal; font-size: 16px;">You have joined a Python development team as a Junior Python Developer. Before you can complete your first client project, you must pass four system-training missions. Each mission develops a different programming skill, beginning with data storage and ending with the construction of a complete Python program.</p>
+     <p data-template-id="brief-support" class="canva-text mb-8" style="color: rgb(79, 195, 247); font-style: normal; font-weight: 400; font-size: 16px;">Complete the missions in the recommended order so that each new challenge builds on the skills developed in the previous mission.</p>
+     <div class="flex flex-wrap justify-center items-center gap-3 text-center"><span class="px-4 py-2 rounded-lg font-bold" style="background: var(--bg-panel); color: var(--cyan);">Understand</span> <span style="color: var(--text-muted);">→</span> <span class="px-4 py-2 rounded-lg font-bold" style="background: var(--bg-panel); color: var(--cyan);">Apply</span> <span style="color: var(--text-muted);">→</span> <span class="px-4 py-2 rounded-lg font-bold" style="background: var(--bg-panel); color: var(--cyan);">Repair</span> <span style="color: var(--text-muted);">→</span> <span class="px-4 py-2 rounded-lg font-bold" style="background: var(--bg-panel); color: var(--cyan);">Build</span>
+     </div>
+    </div>
+   </section><!-- Learning Outcomes -->
+   <section class="section-container">
+    <h2 data-template-id="outcomes-heading" class="canva-text font-bold text-center mb-10" style="color: rgb(248, 250, 252); font-weight: 700; font-style: normal; font-size: 24px;">What You Will Learn</h2>
+    <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+     <div data-template-id="outcome-1-card" class="canva-card p-6 rounded-xl" style="background: rgb(30, 41, 59); border-left: 4px solid var(--python-blue);">
+      <p class="mono text-xs mb-2" style="color: var(--python-blue);">Outcome 1</p>
+      <h3 data-template-id="outcome-1-title" class="canva-text font-bold mb-2" style="color: rgb(248, 250, 252); font-weight: 700; font-style: normal; font-size: 19px;">Understand Variables</h3>
+      <p data-template-id="outcome-1-text" class="canva-text text-sm mb-3" style="color: rgb(203, 213, 225); font-weight: 400; font-style: normal; font-size: 16px;">Explain how Python stores data using variables.</p>
+      <p data-template-id="outcome-1-evidence" class="canva-text text-xs" style="color: rgb(148, 163, 184); font-weight: 400; font-style: normal; font-size: 16px;">You will identify how values are assigned and stored.</p>
+     </div>
+     <div data-template-id="outcome-2-card" class="canva-card p-6 rounded-xl" style="background: rgb(30, 41, 59); border-left: 4px solid var(--cyan);">
+      <p class="mono text-xs mb-2" style="color: var(--cyan);">Outcome 2</p>
+      <h3 data-template-id="outcome-2-title" class="canva-text font-bold mb-2" style="color: rgb(248, 250, 252); font-weight: 700; font-style: normal; font-size: 19px;">Name Variables Correctly</h3>
+      <p data-template-id="outcome-2-text" class="canva-text text-sm mb-3" style="color: rgb(203, 213, 225); font-weight: 400; font-style: normal; font-size: 16px;">Apply Python variable-naming rules correctly.</p>
+      <p data-template-id="outcome-2-evidence" class="canva-text text-xs" style="color: rgb(148, 163, 184); font-weight: 400; font-style: normal; font-size: 16px;">You will inspect, repair, and justify variable names.</p>
+     </div>
+     <div data-template-id="outcome-3-card" class="canva-card p-6 rounded-xl" style="background: rgb(30, 41, 59); border-left: 4px solid var(--green);">
+      <p class="mono text-xs mb-2" style="color: var(--green);">Outcome 3</p>
+      <h3 data-template-id="outcome-3-title" class="canva-text font-bold mb-2" style="color: rgb(248, 250, 252); font-weight: 700; font-style: normal; font-size: 19px;">Write Simple Programs</h3>
+      <p data-template-id="outcome-3-text" class="canva-text text-sm mb-3" style="color: rgb(203, 213, 225); font-weight: 400; font-style: normal; font-size: 16px;">Use correct Python syntax to write simple programs.</p>
+      <p data-template-id="outcome-3-evidence" class="canva-text text-xs" style="color: rgb(148, 163, 184); font-weight: 400; font-style: normal; font-size: 16px;">You will repair syntax and build a working program from a client request.</p>
+     </div>
+    </div>
+   </section><!-- How to Play -->
+   <section id="howto-section" class="section-container" style="background: var(--bg-card);">
+    <h2 data-template-id="howto-heading" class="canva-text font-bold text-center mb-8" style="color: rgb(248, 250, 252); font-weight: 700; font-style: normal; font-size: 24px;">How to Complete the Bootcamp</h2>
+    <ol class="max-w-2xl mx-auto space-y-3 list-decimal list-inside" style="color: var(--text-secondary);">
+     <li>Start with Mission 1.</li>
+     <li>Complete each mission in the recommended order.</li>
+     <li>Read the explanatory feedback after every decision.</li>
+     <li>Use hints only when needed.</li>
+     <li>Complete the reflection task at the end of each mission.</li>
+     <li>Return to this portal after finishing each game.</li>
+     <li>Continue to the next mission card.</li>
+    </ol>
+    <p class="max-w-2xl mx-auto mt-6 text-sm p-4 rounded-lg" style="background: var(--bg-panel); color: var(--amber);"><i data-lucide="alert-triangle" style="width:16px;height:16px;display:inline;vertical-align:middle;margin-right:4px;"></i> The portal does not automatically record your progress. Keep this page open or return using the link provided by your educator.</p>
+   </section><!-- Mission Sequence -->
+   <section id="mission-sequence" class="section-container">
+    <h2 data-template-id="sequence-heading" class="canva-text font-bold text-center mb-4" style="color: rgb(248, 250, 252); font-weight: 700; font-style: normal; font-size: 24px;">Recommended Mission Sequence</h2>
+    <p class="text-center mb-8 text-sm" style="color: var(--text-muted);">Each mission is independent, but the recommended sequence provides progressive difficulty and stronger learning continuity.</p>
+    <div class="flex flex-wrap justify-center items-center gap-4 max-w-4xl mx-auto mb-4">
+     <div class="text-center p-4 rounded-lg flex-1 min-w-[140px]" style="background: var(--bg-card); border: 1px solid var(--python-blue);">
+      <p class="mono text-xs mb-1" style="color: var(--text-muted);">Step 1</p>
+      <p class="font-bold text-sm">Memory Vault</p><span class="stage-badge mt-2 inline-block" style="background: rgba(55,118,171,0.2); color: var(--python-blue);">Understand</span>
+     </div><span class="text-2xl hidden md:block" style="color: var(--text-muted);">→</span>
+     <div class="text-center p-4 rounded-lg flex-1 min-w-[140px]" style="background: var(--bg-card); border: 1px solid var(--cyan);">
+      <p class="mono text-xs mb-1" style="color: var(--text-muted);">Step 2</p>
+      <p class="font-bold text-sm">Code Inspection Unit</p><span class="stage-badge mt-2 inline-block" style="background: rgba(79,195,247,0.2); color: var(--cyan);">Apply</span>
+     </div><span class="text-2xl hidden md:block" style="color: var(--text-muted);">→</span>
+     <div class="text-center p-4 rounded-lg flex-1 min-w-[140px]" style="background: var(--bg-card); border: 1px solid var(--amber);">
+      <p class="mono text-xs mb-1" style="color: var(--text-muted);">Step 3</p>
+      <p class="font-bold text-sm">Syntax Emergency Lab</p><span class="stage-badge mt-2 inline-block" style="background: rgba(255,193,7,0.2); color: var(--amber);">Repair</span>
+     </div><span class="text-2xl hidden md:block" style="color: var(--text-muted);">→</span>
+     <div class="text-center p-4 rounded-lg flex-1 min-w-[140px]" style="background: var(--bg-card); border: 1px solid var(--green);">
+      <p class="mono text-xs mb-1" style="color: var(--text-muted);">Step 4</p>
+      <p class="font-bold text-sm">Client Request Simulator</p><span class="stage-badge mt-2 inline-block" style="background: rgba(76,175,80,0.2); color: var(--green);">Build</span>
+     </div>
+    </div>
+    <p class="text-center mono text-sm" style="color: var(--cyan);">Recommended order: 1 → 2 → 3 → 4</p>
+   </section><!-- Mission Cards -->
+   <section id="mission-cards" class="section-container" style="background: var(--bg-card);">
+    <div class="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto"><!-- Card 1 -->
+     <article class="mission-card fade-in">
+      <div class="flex items-center justify-between mb-3"><span class="mono text-xs px-2 py-1 rounded" style="background: var(--bg-panel); color: var(--text-muted);">Mission 1</span> <span class="stage-badge" style="background: rgba(55,118,171,0.2); color: var(--python-blue);">Understand</span>
+      </div>
+      <h3 data-template-id="card-1-title" class="canva-text font-bold text-xl mb-2" style="color: rgb(248, 250, 252); font-weight: 700; font-style: normal; font-size: 19px;">Memory Vault</h3>
+      <p data-template-id="card-1-purpose" class="canva-text text-sm mb-3" style="color: rgb(203, 213, 225); font-weight: 400; font-style: normal; font-size: 16px;">Understand how Python stores data using variables.</p>
+      <p class="text-xs mb-1" style="color: var(--text-muted);"><strong>Action:</strong> Match values to suitable variables and data types, then explain each storage decision.</p>
+      <div class="flex gap-4 text-xs mb-4" style="color: var(--text-muted);"><span>⏱ 10–15 min</span> <span>📊 Foundation</span>
+      </div>
+      <div class="flex flex-wrap gap-3"><a href="https://mohamadfauziml.github.io/Memory-Vault/" target="_blank" rel="noopener noreferrer" class="btn-primary text-sm" aria-label="Launch Mission 1: Memory Vault">Launch Mission 1</a> <button class="btn-secondary text-sm" onclick="openDetails(0)">View Mission Details</button>
+      </div>
+     </article><!-- Card 2 -->
+     <article class="mission-card fade-in">
+      <div class="flex items-center justify-between mb-3"><span class="mono text-xs px-2 py-1 rounded" style="background: var(--bg-panel); color: var(--text-muted);">Mission 2</span> <span class="stage-badge" style="background: rgba(79,195,247,0.2); color: var(--cyan);">Apply</span>
+      </div>
+      <h3 data-template-id="card-2-title" class="canva-text font-bold text-xl mb-2" style="color: rgb(248, 250, 252); font-weight: 700; font-style: normal; font-size: 19px;">Code Inspection Unit</h3>
+      <p data-template-id="card-2-purpose" class="canva-text text-sm mb-3" style="color: rgb(203, 213, 225); font-weight: 400; font-style: normal; font-size: 16px;">Apply Python variable-naming rules correctly.</p>
+      <p class="text-xs mb-1" style="color: var(--text-muted);"><strong>Action:</strong> Inspect variable names, identify rule violations, repair invalid names, and justify each correction.</p>
+      <div class="flex gap-4 text-xs mb-4" style="color: var(--text-muted);"><span>⏱ 10–15 min</span> <span>📊 Developing</span>
+      </div>
+      <div class="flex flex-wrap gap-3"><a href="https://mohamadfauziml.github.io/Variable-Naming/" target="_blank" rel="noopener noreferrer" class="btn-primary text-sm" aria-label="Launch Mission 2: Code Inspection Unit">Launch Mission 2</a> <button class="btn-secondary text-sm" onclick="openDetails(1)">View Mission Details</button>
+      </div>
+     </article><!-- Card 3 -->
+     <article class="mission-card fade-in">
+      <div class="flex items-center justify-between mb-3"><span class="mono text-xs px-2 py-1 rounded" style="background: var(--bg-panel); color: var(--text-muted);">Mission 3</span> <span class="stage-badge" style="background: rgba(255,193,7,0.2); color: var(--amber);">Repair</span>
+      </div>
+      <h3 data-template-id="card-3-title" class="canva-text font-bold text-xl mb-2" style="color: rgb(248, 250, 252); font-weight: 700; font-style: normal; font-size: 19px;">Syntax Emergency Lab</h3>
+      <p data-template-id="card-3-purpose" class="canva-text text-sm mb-3" style="color: rgb(203, 213, 225); font-weight: 400; font-style: normal; font-size: 16px;">Use correct Python syntax to repair simple programs.</p>
+      <p class="text-xs mb-1" style="color: var(--text-muted);"><strong>Action:</strong> Locate syntax errors, correct the faulty code, and verify the expected output.</p>
+      <div class="flex gap-4 text-xs mb-4" style="color: var(--text-muted);"><span>⏱ 10–15 min</span> <span>📊 Intermediate</span>
+      </div>
+      <div class="flex flex-wrap gap-3"><a href="https://mohamadfauziml.github.io/Syntax-Emergency-Lab/" target="_blank" rel="noopener noreferrer" class="btn-primary text-sm" aria-label="Launch Mission 3: Syntax Emergency Lab">Launch Mission 3</a> <button class="btn-secondary text-sm" onclick="openDetails(2)">View Mission Details</button>
+      </div>
+     </article><!-- Card 4 -->
+     <article class="mission-card fade-in">
+      <div class="flex items-center justify-between mb-3"><span class="mono text-xs px-2 py-1 rounded" style="background: var(--bg-panel); color: var(--text-muted);">Mission 4</span> <span class="stage-badge" style="background: rgba(76,175,80,0.2); color: var(--green);">Build</span>
+      </div>
+      <h3 data-template-id="card-4-title" class="canva-text font-bold text-xl mb-2" style="color: rgb(248, 250, 252); font-weight: 700; font-style: normal; font-size: 19px;">Client Request Simulator</h3>
+      <p data-template-id="card-4-purpose" class="canva-text text-sm mb-3" style="color: rgb(203, 213, 225); font-weight: 400; font-style: normal; font-size: 16px;">Construct a simple Python program that meets a client request.</p>
+      <p class="text-xs mb-1" style="color: var(--text-muted);"><strong>Action:</strong> Interpret requirements, create meaningful variables, write correct statements, test the program, and verify the output.</p>
+      <div class="flex gap-4 text-xs mb-4" style="color: var(--text-muted);"><span>⏱ 15–20 min</span> <span>📊 Capstone</span>
+      </div>
+      <div class="flex flex-wrap gap-3"><a href="https://mohamadfauziml.github.io/Client-Request-Simulator/" target="_blank" rel="noopener noreferrer" class="btn-primary text-sm" aria-label="Launch Mission 4: Client Request Simulator">Launch Mission 4</a> <button class="btn-secondary text-sm" onclick="openDetails(3)">View Mission Details</button>
+      </div>
+     </article>
+    </div>
+   </section><!-- Bootcamp Summary -->
+   <section class="section-container">
+    <h2 data-template-id="summary-heading" class="canva-text font-bold text-center mb-8" style="color: rgb(248, 250, 252); font-weight: 700; font-style: normal; font-size: 24px;">Your Learning Journey</h2>
+    <div class="max-w-3xl mx-auto space-y-4 mb-8">
+     <div class="flex items-start gap-3 p-3 rounded-lg" style="background: var(--bg-card);"><span class="mono font-bold shrink-0" style="color: var(--python-blue);">01</span>
+      <p style="color: var(--text-secondary);">Store data using variables.</p>
+     </div>
+     <div class="flex items-start gap-3 p-3 rounded-lg" style="background: var(--bg-card);"><span class="mono font-bold shrink-0" style="color: var(--cyan);">02</span>
+      <p style="color: var(--text-secondary);">Apply valid and meaningful variable names.</p>
+     </div>
+     <div class="flex items-start gap-3 p-3 rounded-lg" style="background: var(--bg-card);"><span class="mono font-bold shrink-0" style="color: var(--amber);">03</span>
+      <p style="color: var(--text-secondary);">Repair Python syntax errors.</p>
+     </div>
+     <div class="flex items-start gap-3 p-3 rounded-lg" style="background: var(--bg-card);"><span class="mono font-bold shrink-0" style="color: var(--green);">04</span>
+      <p style="color: var(--text-secondary);">Build a complete simple program.</p>
+     </div>
+    </div>
+    <p data-template-id="summary-statement" class="canva-text text-center max-w-2xl mx-auto mb-6" style="color: rgb(203, 213, 225); font-weight: 400; font-style: normal; font-size: 16px;">By the end of the bootcamp, you will have moved from understanding isolated programming concepts to applying them in a complete Python task.</p>
+    <div class="flex flex-wrap justify-center gap-6 text-sm" style="color: var(--text-muted);"><span>⏱ ~45–65 minutes</span> <span>🎯 4 Missions</span> <span>👤 Individual</span>
+    </div>
+   </section><!-- Final Reflection -->
+   <section id="reflection" class="section-container" style="background: var(--bg-card);">
+    <h2 data-template-id="reflection-heading" class="canva-text font-bold text-center mb-4" style="color: rgb(248, 250, 252); font-weight: 700; font-style: normal; font-size: 24px;">Final Bootcamp Reflection</h2>
+    <p data-template-id="reflection-prompt" class="canva-text text-center max-w-2xl mx-auto mb-6" style="color: rgb(203, 213, 225); font-weight: 400; font-style: normal; font-size: 16px;">How did your decisions about data storage, variable naming, and syntax help you build a clearer and more reliable Python program?</p>
+    <div class="max-w-2xl mx-auto">
+     <div class="mb-3 space-y-1 text-sm" style="color: var(--text-muted);">
+      <p>• How did variables help organise the program's data?</p>
+      <p>• How did meaningful names improve readability?</p>
+      <p>• How did correct syntax affect execution?</p>
+     </div><label for="reflection-textarea" class="sr-only">Your reflection</label> <textarea id="reflection-textarea" rows="6" class="w-full p-4 rounded-lg text-sm resize-y" style="background: var(--bg-main); color: var(--text-primary); border: 1px solid rgba(79,195,247,0.3);" placeholder="Describe how the skills from the four missions worked together." oninput="updateCounter()"></textarea>
+     <div class="flex justify-between items-center mt-2 text-xs" style="color: var(--text-muted);"><span id="char-counter">0 characters (minimum 50)</span> <span id="reflection-error" style="color: var(--red); display:none;"></span>
+     </div>
+     <div class="flex flex-wrap gap-3 mt-4"><button class="btn-primary text-sm" onclick="saveReflection()">Save Reflection on This Device</button> <button class="btn-secondary text-sm" onclick="copyReflection()">Copy Reflection</button>
+     </div>
+     <p class="text-xs mt-3" style="color: var(--text-muted);">Your reflection is stored only in this browser session and is not sent to your lecturer.</p>
+     <div id="copy-success" class="text-xs mt-2" style="color: var(--green); display:none;">
+      Reflection copied. You can paste it into your learning platform or document.
+     </div>
+    </div><!-- Completion message -->
+    <div id="completion-msg" class="max-w-2xl mx-auto mt-8 p-6 rounded-xl hidden" style="background: var(--bg-panel); border: 1px solid var(--green);">
+     <h3 data-template-id="completion-heading" class="canva-text font-bold text-lg mb-2" style="color: rgb(76, 175, 80); font-weight: 700; font-style: normal; font-size: 19px;">Python Bootcamp Reflection Complete</h3>
+     <p data-template-id="completion-text" class="canva-text text-sm mb-2" style="color: rgb(203, 213, 225); font-weight: 400; font-style: normal; font-size: 16px;">You have connected the key ideas from all four missions: storing data, naming variables, repairing syntax, and building a simple Python program.</p>
+     <p data-template-id="completion-support" class="canva-text text-sm mb-4" style="color: rgb(148, 163, 184); font-weight: 400; font-style: normal; font-size: 16px;">Review any mission again whenever you need additional practice.</p>
+     <div class="flex flex-wrap gap-3"><button class="btn-secondary text-sm" onclick="scrollToSection('mission-sequence')">Review Mission Sequence</button> <button class="btn-secondary text-sm" onclick="copyReflection()">Copy Reflection</button>
+     </div>
+    </div>
+   </section>
+  </main><!-- Footer -->
+  <footer data-template-id="footer-section" class="canva-footer py-8 px-6 text-center" style="background: rgb(36, 50, 71); border-top: 1px solid rgba(79, 195, 247, 0.1);">
+   <p data-template-id="footer-title" class="canva-text font-bold mb-1" style="color: rgb(248, 250, 252); font-weight: 700; font-style: normal; font-size: 16px;">Python Bootcamp: System Initialization</p>
+   <p data-template-id="footer-desc" class="canva-text text-sm mb-4" style="color: rgb(148, 163, 184); font-weight: 400; font-style: normal; font-size: 16px;">A connected educational game journey for Structured Programming in Python.</p>
+   <nav class="flex flex-wrap justify-center gap-4 text-sm mb-4" aria-label="Footer navigation"><button class="btn-secondary text-xs py-1 px-3" onclick="scrollToSection('outcomes-heading')">Learning Outcomes</button> <button class="btn-secondary text-xs py-1 px-3" onclick="openModal('howto-modal')">How to Play</button> <button class="btn-secondary text-xs py-1 px-3" onclick="scrollToSection('mission-sequence')">Mission Sequence</button> <button class="btn-secondary text-xs py-1 px-3" onclick="scrollToSection('reflection')">Final Reflection</button>
+   </nav>
+   <p class="text-xs" style="color: var(--text-muted);">All mission games open in a new tab.</p>
+  </footer><!-- How to Play Modal -->
+  <div id="howto-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="howto-modal-title" onclick="closeModalBackdrop(event, 'howto-modal')">
+   <div class="w-full max-w-lg p-6 rounded-xl relative" style="background: var(--bg-card); border: 1px solid rgba(79,195,247,0.3);" onclick="event.stopPropagation()"><button class="absolute top-3 right-3 p-2 rounded" style="color: var(--text-muted);" onclick="closeModal('howto-modal')" aria-label="Close"><i data-lucide="x" style="width:20px;height:20px;"></i></button>
+    <h2 id="howto-modal-title" class="font-bold text-xl mb-4">How to Complete the Bootcamp</h2>
+    <ol class="space-y-2 list-decimal list-inside text-sm" style="color: var(--text-secondary);">
+     <li>Start with Mission 1.</li>
+     <li>Complete each mission in the recommended order.</li>
+     <li>Read the explanatory feedback after every decision.</li>
+     <li>Use hints only when needed.</li>
+     <li>Complete the reflection task at the end of each mission.</li>
+     <li>Return to this portal after finishing each game.</li>
+     <li>Continue to the next mission card.</li>
+    </ol>
+    <p class="mt-4 text-xs p-3 rounded" style="background: var(--bg-panel); color: var(--amber);">The portal does not automatically record your progress.</p>
+   </div>
+  </div><!-- Mission Details Modal -->
+  <div id="details-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="details-modal-title" onclick="closeModalBackdrop(event, 'details-modal')">
+   <div class="w-full max-w-lg p-6 rounded-xl relative" style="background: var(--bg-card); border: 1px solid rgba(79,195,247,0.3);" onclick="event.stopPropagation()"><button class="absolute top-3 right-3 p-2 rounded" style="color: var(--text-muted);" onclick="closeModal('details-modal')" aria-label="Close"><i data-lucide="x" style="width:20px;height:20px;"></i></button>
+    <h2 id="details-modal-title" class="font-bold text-xl mb-4"></h2>
+    <div id="details-modal-body" class="text-sm space-y-3" style="color: var(--text-secondary);"></div>
+   </div>
+  </div>
+  <script>
+        const missions = [
+            { title: 'Memory Vault', stage: 'Understand', difficulty: 'Foundation', duration: '10–15 minutes', url: 'https://mohamadfauziml.github.io/Memory-Vault/', details: 'In Memory Vault, you work with stored values and meaningful variables. The mission introduces how Python keeps information in memory and how values are assigned to variable names.', evidence: 'You demonstrate learning by selecting suitable variables, identifying value types, and explaining storage choices.', purpose: 'Understand how Python stores data using variables.' },
+            { title: 'Code Inspection Unit', stage: 'Apply', difficulty: 'Developing', duration: '10–15 minutes', url: 'https://mohamadfauziml.github.io/Variable-Naming/', details: 'In Code Inspection Unit, you examine Python variable declarations and decide whether each name is valid, invalid, or valid but unclear.', evidence: 'You demonstrate learning by diagnosing naming errors, repairing invalid identifiers, and identifying the relevant rule.', purpose: 'Apply Python variable-naming rules correctly.' },
+            { title: 'Syntax Emergency Lab', stage: 'Repair', difficulty: 'Intermediate', duration: '10–15 minutes', url: 'https://mohamadfauziml.github.io/Syntax-Emergency-Lab/', details: 'In Syntax Emergency Lab, you restore malfunctioning Python programs by correcting quotation marks, parentheses, assignments, and other basic syntax errors.', evidence: 'You demonstrate learning by identifying the faulty statement, applying the correct repair, and confirming that the program can run.', purpose: 'Use correct Python syntax to repair simple programs.' },
+            { title: 'Client Request Simulator', stage: 'Build', difficulty: 'Capstone', duration: '15–20 minutes', url: 'https://mohamadfauziml.github.io/Client-Request-Simulator/', details: 'In Client Request Simulator, you combine all previous skills to create simple Python programs for realistic client briefs.', evidence: 'You demonstrate learning by independently constructing a syntactically correct program that stores information and produces the required output.', purpose: 'Construct a simple Python program that meets a client request.' }
+        ];
+
+        function scrollToSection(id) {
+            const el = document.getElementById(id) || document.querySelector(`[data-template-id="${id}"]`);
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function openModal(id) {
+            document.getElementById(id).classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeModal(id) {
+            document.getElementById(id).classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+        function closeModalBackdrop(e, id) {
+            if (e.target === e.currentTarget) closeModal(id);
+        }
+
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') {
+                closeModal('howto-modal');
+                closeModal('details-modal');
+            }
+        });
+
+        function openDetails(i) {
+            const m = missions[i];
+            document.getElementById('details-modal-title').textContent = `Mission ${i+1}: ${m.title}`;
+            document.getElementById('details-modal-body').innerHTML = `
+                <p><strong>Stage:</strong> ${m.stage}</p>
+                <p><strong>Purpose:</strong> ${m.purpose}</p>
+                <p><strong>Difficulty:</strong> ${m.difficulty}</p>
+                <p><strong>Duration:</strong> ${m.duration}</p>
+                <p>${m.details}</p>
+                <p style="color: var(--text-muted); font-style: italic;">${m.evidence}</p>
+                <a href="${m.url}" target="_blank" rel="noopener noreferrer" class="btn-primary inline-block mt-3 text-sm" aria-label="Launch Mission ${i+1}: ${m.title}">Launch Mission ${i+1}</a>
+            `;
+            openModal('details-modal');
+        }
+
+        function updateCounter() {
+            const ta = document.getElementById('reflection-textarea');
+            const count = ta.value.length;
+            document.getElementById('char-counter').textContent = `${count} character${count!==1?'s':''} (minimum 50)`;
+            document.getElementById('reflection-error').style.display = 'none';
+        }
+
+        function saveReflection() {
+            const ta = document.getElementById('reflection-textarea');
+            if (ta.value.length < 50) {
+                const err = document.getElementById('reflection-error');
+                err.textContent = 'Add more detail so your reflection explains how the programming skills worked together.';
+                err.style.display = 'block';
+                return;
+            }
+            try { sessionStorage.setItem('bootcamp_reflection', ta.value); } catch(e) {}
+            document.getElementById('completion-msg').classList.remove('hidden');
+            document.getElementById('completion-msg').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function copyReflection() {
+            const ta = document.getElementById('reflection-textarea');
+            if (!ta.value) return;
+            navigator.clipboard.writeText(ta.value).then(() => {
+                document.getElementById('copy-success').style.display = 'block';
+                setTimeout(() => { document.getElementById('copy-success').style.display = 'none'; }, 4000);
+            }).catch(() => {
+                document.getElementById('copy-success').textContent = 'Copying was unavailable. Select and copy the link manually.';
+                document.getElementById('copy-success').style.display = 'block';
+            });
+        }
+
+        // Restore reflection from session
+        try {
+            const saved = sessionStorage.getItem('bootcamp_reflection');
+            if (saved) {
+                document.getElementById('reflection-textarea').value = saved;
+                updateCounter();
+            }
+        } catch(e) {}
+
+        lucide.createIcons();
+    </script>
+ 
+</body></html>
