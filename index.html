@@ -39,6 +39,30 @@
         .fade-in { animation: fadeIn 0.6s ease-out; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         .stage-badge { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; padding: 0.25rem 0.75rem; border-radius: 9999px; }
+
+        .form-input {
+            width: 100%;
+            background: var(--bg-main);
+            color: var(--text-primary);
+            border: 1px solid rgba(79,195,247,0.35);
+            border-radius: 0.5rem;
+            padding: 0.75rem 0.9rem;
+        }
+        .form-input:focus {
+            outline: 3px solid rgba(79,195,247,0.25);
+            border-color: var(--cyan);
+        }
+        .student-panel {
+            background: rgba(30,41,59,0.92);
+            border: 1px solid rgba(79,195,247,0.25);
+            border-radius: 0.75rem;
+            padding: 0.9rem 1rem;
+        }
+        .btn-disabled {
+            opacity: 0.55;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
     </style>
   <script src="/_sdk/935a53bc2e11fb8d.data_sdk.js" type="text/javascript" integrity="sha512-qr2oyPnEys1WebcOABaRh6hG77r5PWpqeWW6JTKbRJqly/INsfBi31CVNlTmHqjgeLpkVmmHZJUdxSx/32tOFQ=="></script>
   <script src="/_sdk/6030e540d4419216.resizing_sdk.js" type="text/javascript" integrity="sha512-b5KWzyoXsbWP4smq4sftIi6Kts4YVBpBsz0BwCViwbBJkK64a3/Z6ZMdWA+qnplNcXw4mhZeqvQi3mOosiRJdA=="></script>
@@ -57,7 +81,20 @@
     <p data-template-id="hero-desc" class="canva-text max-w-3xl mx-auto mb-8" style="color: rgb(203, 213, 225); font-size: 16px; font-weight: 400; font-style: normal;">Complete four progressive programming missions to understand data storage, apply variable-naming rules, repair syntax errors, and build a working Python program.</p>
     <div class="flex flex-wrap justify-center gap-6 mb-8 text-sm"><span class="mono px-3 py-1 rounded" style="background: var(--bg-panel); color: var(--cyan);">4 Missions</span> <span class="mono px-3 py-1 rounded" style="background: var(--bg-panel); color: var(--cyan);">Diploma Level</span> <span class="mono px-3 py-1 rounded" style="background: var(--bg-panel); color: var(--cyan);">Individual Mode</span> <span class="mono px-3 py-1 rounded" style="background: var(--bg-panel); color: var(--cyan);">45–65 Minutes</span>
     </div>
-    <div class="flex flex-wrap justify-center gap-4 mb-8"><button data-template-id="hero-cta" class="canva-button btn-primary" onclick="scrollToSection('mission-sequence')" style="background: rgb(55, 118, 171); color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 16px;">View Mission Sequence</button> <button data-template-id="hero-howto" class="canva-button btn-secondary" onclick="openModal('howto-modal')" style="color: rgb(79, 195, 247); font-weight: 400; font-style: normal; font-size: 16px;">How to Play</button>
+    <div class="flex flex-wrap justify-center gap-4 mb-5">
+      <button id="initialize-btn" class="canva-button btn-primary" onclick="openStudentModal()">Initialize Student Profile</button>
+      <button data-template-id="hero-cta" class="canva-button btn-secondary" onclick="scrollToSection('mission-sequence')">View Mission Sequence</button>
+      <button data-template-id="hero-howto" class="canva-button btn-secondary" onclick="openModal('howto-modal')">How to Play</button>
+    </div>
+    <div id="student-panel" class="student-panel max-w-xl mx-auto mb-8 hidden text-left">
+      <div class="flex flex-wrap items-center justify-between gap-3">
+        <div>
+          <p class="text-xs uppercase tracking-wider mb-1" style="color: var(--text-muted);">Active Student</p>
+          <p id="student-summary" class="text-sm" style="color: var(--text-secondary);"></p>
+        </div>
+        <button class="btn-secondary text-xs py-2 px-3" onclick="openStudentModal(true)">Edit Profile</button>
+      </div>
+      <p id="sync-status" class="text-xs mt-2" style="color: var(--green);">Profile ready.</p>
     </div>
     <div class="inline-block text-left p-4 rounded-lg" style="background: var(--bg-card); border: 1px solid rgba(79,195,247,0.2);">
      <p class="text-xs uppercase tracking-wider mb-2" style="color: var(--text-muted);">System Status</p>
@@ -111,7 +148,7 @@
      <li>Return to this portal after finishing each game.</li>
      <li>Continue to the next mission card.</li>
     </ol>
-    <p class="max-w-2xl mx-auto mt-6 text-sm p-4 rounded-lg" style="background: var(--bg-panel); color: var(--amber);"><i data-lucide="alert-triangle" style="width:16px;height:16px;display:inline;vertical-align:middle;margin-right:4px;"></i> The portal does not automatically record your progress. Keep this page open or return using the link provided by your educator.</p>
+    <p class="max-w-2xl mx-auto mt-6 text-sm p-4 rounded-lg" style="background: var(--bg-panel); color: var(--amber);"><i data-lucide="alert-triangle" style="width:16px;height:16px;display:inline;vertical-align:middle;margin-right:4px;"></i> Initialize your student profile before launching a mission. Your identity will be retained on this device and passed to each mission.</p>
    </section><!-- Mission Sequence -->
    <section id="mission-sequence" class="section-container">
     <h2 data-template-id="sequence-heading" class="canva-text font-bold text-center mb-4" style="color: rgb(248, 250, 252); font-weight: 700; font-style: normal; font-size: 24px;">Recommended Mission Sequence</h2>
@@ -146,7 +183,7 @@
       <p class="text-xs mb-1" style="color: var(--text-muted);"><strong>Action:</strong> Match values to suitable variables and data types, then explain each storage decision.</p>
       <div class="flex gap-4 text-xs mb-4" style="color: var(--text-muted);"><span>⏱ 10–15 min</span> <span>📊 Foundation</span>
       </div>
-      <div class="flex flex-wrap gap-3"><a href="https://mohamadfauziml.github.io/Memory-Vault/" target="_blank" rel="noopener noreferrer" class="btn-primary text-sm" aria-label="Launch Mission 1: Memory Vault">Launch Mission 1</a> <button class="btn-secondary text-sm" onclick="openDetails(0)">View Mission Details</button>
+      <div class="flex flex-wrap gap-3"><button class="btn-primary text-sm mission-launch-btn" onclick="launchMission(0)" aria-label="Launch Mission 1">Launch Mission 1</button> <button class="btn-secondary text-sm" onclick="openDetails(0)">View Mission Details</button>
       </div>
      </article><!-- Card 2 -->
      <article class="mission-card fade-in">
@@ -157,7 +194,7 @@
       <p class="text-xs mb-1" style="color: var(--text-muted);"><strong>Action:</strong> Inspect variable names, identify rule violations, repair invalid names, and justify each correction.</p>
       <div class="flex gap-4 text-xs mb-4" style="color: var(--text-muted);"><span>⏱ 10–15 min</span> <span>📊 Developing</span>
       </div>
-      <div class="flex flex-wrap gap-3"><a href="https://mohamadfauziml.github.io/Variable-Naming/" target="_blank" rel="noopener noreferrer" class="btn-primary text-sm" aria-label="Launch Mission 2: Code Inspection Unit">Launch Mission 2</a> <button class="btn-secondary text-sm" onclick="openDetails(1)">View Mission Details</button>
+      <div class="flex flex-wrap gap-3"><button class="btn-primary text-sm mission-launch-btn" onclick="launchMission(1)" aria-label="Launch Mission 2">Launch Mission 2</button> <button class="btn-secondary text-sm" onclick="openDetails(1)">View Mission Details</button>
       </div>
      </article><!-- Card 3 -->
      <article class="mission-card fade-in">
@@ -168,7 +205,7 @@
       <p class="text-xs mb-1" style="color: var(--text-muted);"><strong>Action:</strong> Locate syntax errors, correct the faulty code, and verify the expected output.</p>
       <div class="flex gap-4 text-xs mb-4" style="color: var(--text-muted);"><span>⏱ 10–15 min</span> <span>📊 Intermediate</span>
       </div>
-      <div class="flex flex-wrap gap-3"><a href="https://mohamadfauziml.github.io/Syntax-Emergency-Lab/" target="_blank" rel="noopener noreferrer" class="btn-primary text-sm" aria-label="Launch Mission 3: Syntax Emergency Lab">Launch Mission 3</a> <button class="btn-secondary text-sm" onclick="openDetails(2)">View Mission Details</button>
+      <div class="flex flex-wrap gap-3"><button class="btn-primary text-sm mission-launch-btn" onclick="launchMission(2)" aria-label="Launch Mission 3">Launch Mission 3</button> <button class="btn-secondary text-sm" onclick="openDetails(2)">View Mission Details</button>
       </div>
      </article><!-- Card 4 -->
      <article class="mission-card fade-in">
@@ -179,7 +216,7 @@
       <p class="text-xs mb-1" style="color: var(--text-muted);"><strong>Action:</strong> Interpret requirements, create meaningful variables, write correct statements, test the program, and verify the output.</p>
       <div class="flex gap-4 text-xs mb-4" style="color: var(--text-muted);"><span>⏱ 15–20 min</span> <span>📊 Capstone</span>
       </div>
-      <div class="flex flex-wrap gap-3"><a href="https://mohamadfauziml.github.io/Client-Request-Simulator/" target="_blank" rel="noopener noreferrer" class="btn-primary text-sm" aria-label="Launch Mission 4: Client Request Simulator">Launch Mission 4</a> <button class="btn-secondary text-sm" onclick="openDetails(3)">View Mission Details</button>
+      <div class="flex flex-wrap gap-3"><button class="btn-primary text-sm mission-launch-btn" onclick="launchMission(3)" aria-label="Launch Mission 4">Launch Mission 4</button> <button class="btn-secondary text-sm" onclick="openDetails(3)">View Mission Details</button>
       </div>
      </article>
     </div>
@@ -215,9 +252,9 @@
      </div><label for="reflection-textarea" class="sr-only">Your reflection</label> <textarea id="reflection-textarea" rows="6" class="w-full p-4 rounded-lg text-sm resize-y" style="background: var(--bg-main); color: var(--text-primary); border: 1px solid rgba(79,195,247,0.3);" placeholder="Describe how the skills from the four missions worked together." oninput="updateCounter()"></textarea>
      <div class="flex justify-between items-center mt-2 text-xs" style="color: var(--text-muted);"><span id="char-counter">0 characters (minimum 50)</span> <span id="reflection-error" style="color: var(--red); display:none;"></span>
      </div>
-     <div class="flex flex-wrap gap-3 mt-4"><button class="btn-primary text-sm" onclick="saveReflection()">Save Reflection on This Device</button> <button class="btn-secondary text-sm" onclick="copyReflection()">Copy Reflection</button>
+     <div class="flex flex-wrap gap-3 mt-4"><button class="btn-primary text-sm" onclick="saveReflection()">Submit Final Reflection</button> <button class="btn-secondary text-sm" onclick="copyReflection()">Copy Reflection</button>
      </div>
-     <p class="text-xs mt-3" style="color: var(--text-muted);">Your reflection is stored only in this browser session and is not sent to your lecturer.</p>
+     <p class="text-xs mt-3" style="color: var(--text-muted);">Your final reflection will be submitted to the lecturer's Google Sheet. A local copy is also retained on this device.</p>
      <div id="copy-success" class="text-xs mt-2" style="color: var(--green); display:none;">
       Reflection copied. You can paste it into your learning platform or document.
      </div>
@@ -237,7 +274,35 @@
    <nav class="flex flex-wrap justify-center gap-4 text-sm mb-4" aria-label="Footer navigation"><button class="btn-secondary text-xs py-1 px-3" onclick="scrollToSection('outcomes-heading')">Learning Outcomes</button> <button class="btn-secondary text-xs py-1 px-3" onclick="openModal('howto-modal')">How to Play</button> <button class="btn-secondary text-xs py-1 px-3" onclick="scrollToSection('mission-sequence')">Mission Sequence</button> <button class="btn-secondary text-xs py-1 px-3" onclick="scrollToSection('reflection')">Final Reflection</button>
    </nav>
    <p class="text-xs" style="color: var(--text-muted);">All mission games open in a new tab.</p>
-  </footer><!-- How to Play Modal -->
+  </footer>
+  <!-- Student Initialization Modal -->
+  <div id="student-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="student-modal-title" onclick="closeModalBackdrop(event, 'student-modal')">
+   <div class="w-full max-w-lg p-6 rounded-xl relative" style="background: var(--bg-card); border: 1px solid rgba(79,195,247,0.3);" onclick="event.stopPropagation()">
+    <button class="absolute top-3 right-3 p-2 rounded" style="color: var(--text-muted);" onclick="closeModal('student-modal')" aria-label="Close"><i data-lucide="x" style="width:20px;height:20px;"></i></button>
+    <h2 id="student-modal-title" class="font-bold text-xl mb-2">Student System Initialization</h2>
+    <p class="text-sm mb-5" style="color: var(--text-secondary);">Enter your details once. The same profile will be used throughout Mission 1 to Mission 4.</p>
+    <form id="student-form" class="space-y-4" onsubmit="saveStudentProfile(event)">
+      <div>
+        <label for="student-name" class="block text-sm mb-1">Student Name</label>
+        <input id="student-name" class="form-input" type="text" maxlength="100" autocomplete="name" required placeholder="Enter full name">
+      </div>
+      <div>
+        <label for="student-id" class="block text-sm mb-1">Student ID</label>
+        <input id="student-id" class="form-input mono" type="text" maxlength="50" autocomplete="off" required placeholder="Example: DFI26001">
+      </div>
+      <div>
+        <label for="class-name" class="block text-sm mb-1">Class</label>
+        <input id="class-name" class="form-input" type="text" maxlength="50" autocomplete="off" required placeholder="Example: 1A">
+      </div>
+      <p id="student-form-error" class="text-sm hidden" style="color: var(--red);"></p>
+      <div class="flex flex-wrap gap-3 pt-2">
+        <button id="save-student-btn" type="submit" class="btn-primary">Initialize Bootcamp</button>
+        <button type="button" class="btn-secondary" onclick="closeModal('student-modal')">Cancel</button>
+      </div>
+    </form>
+   </div>
+  </div>
+<!-- How to Play Modal -->
   <div id="howto-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="howto-modal-title" onclick="closeModalBackdrop(event, 'howto-modal')">
    <div class="w-full max-w-lg p-6 rounded-xl relative" style="background: var(--bg-card); border: 1px solid rgba(79,195,247,0.3);" onclick="event.stopPropagation()"><button class="absolute top-3 right-3 p-2 rounded" style="color: var(--text-muted);" onclick="closeModal('howto-modal')" aria-label="Close"><i data-lucide="x" style="width:20px;height:20px;"></i></button>
     <h2 id="howto-modal-title" class="font-bold text-xl mb-4">How to Complete the Bootcamp</h2>
@@ -250,7 +315,7 @@
      <li>Return to this portal after finishing each game.</li>
      <li>Continue to the next mission card.</li>
     </ol>
-    <p class="mt-4 text-xs p-3 rounded" style="background: var(--bg-panel); color: var(--amber);">The portal does not automatically record your progress.</p>
+    <p class="mt-4 text-xs p-3 rounded" style="background: var(--bg-panel); color: var(--amber);">Initialize your student profile before launching Mission 1.</p>
    </div>
   </div><!-- Mission Details Modal -->
   <div id="details-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="details-modal-title" onclick="closeModalBackdrop(event, 'details-modal')">
@@ -260,12 +325,36 @@
    </div>
   </div>
   <script>
+        const API_URL = 'https://script.google.com/macros/s/AKfycbxIUNxYZVM0Eqatri7mQUvU6kYWZ0x4AhAi_XV4tqIh8xP9ymEufTrDWYjfM_H3rAeOGw/exec';
+        const GAME_ID = 'PBSI';
+        const COURSE_CODE = 'DFI10133';
+        const PROFILE_KEY = 'ogf_pbsi_student';
+        const SESSION_KEY = 'ogf_pbsi_session_id';
+        const REFLECTION_KEY = 'ogf_pbsi_final_reflection';
+
         const missions = [
-            { title: 'Memory Vault', stage: 'Understand', difficulty: 'Foundation', duration: '10–15 minutes', url: 'https://mohamadfauziml.github.io/Memory-Vault/', details: 'In Memory Vault, you work with stored values and meaningful variables. The mission introduces how Python keeps information in memory and how values are assigned to variable names.', evidence: 'You demonstrate learning by selecting suitable variables, identifying value types, and explaining storage choices.', purpose: 'Understand how Python stores data using variables.' },
-            { title: 'Code Inspection Unit', stage: 'Apply', difficulty: 'Developing', duration: '10–15 minutes', url: 'https://mohamadfauziml.github.io/Variable-Naming/', details: 'In Code Inspection Unit, you examine Python variable declarations and decide whether each name is valid, invalid, or valid but unclear.', evidence: 'You demonstrate learning by diagnosing naming errors, repairing invalid identifiers, and identifying the relevant rule.', purpose: 'Apply Python variable-naming rules correctly.' },
-            { title: 'Syntax Emergency Lab', stage: 'Repair', difficulty: 'Intermediate', duration: '10–15 minutes', url: 'https://mohamadfauziml.github.io/Syntax-Emergency-Lab/', details: 'In Syntax Emergency Lab, you restore malfunctioning Python programs by correcting quotation marks, parentheses, assignments, and other basic syntax errors.', evidence: 'You demonstrate learning by identifying the faulty statement, applying the correct repair, and confirming that the program can run.', purpose: 'Use correct Python syntax to repair simple programs.' },
-            { title: 'Client Request Simulator', stage: 'Build', difficulty: 'Capstone', duration: '15–20 minutes', url: 'https://mohamadfauziml.github.io/Client-Request-Simulator/', details: 'In Client Request Simulator, you combine all previous skills to create simple Python programs for realistic client briefs.', evidence: 'You demonstrate learning by independently constructing a syntactically correct program that stores information and produces the required output.', purpose: 'Construct a simple Python program that meets a client request.' }
+            { id: 'M1', title: 'Memory Vault', stage: 'Understand', difficulty: 'Foundation', duration: '10–15 minutes', url: 'https://mohamadfauziml.github.io/Memory-Vault/', details: 'In Memory Vault, you work with stored values and meaningful variables. The mission introduces how Python keeps information in memory and how values are assigned to variable names.', evidence: 'You demonstrate learning by selecting suitable variables, identifying value types, and explaining storage choices.', purpose: 'Understand how Python stores data using variables.' },
+            { id: 'M2', title: 'Code Inspection Unit', stage: 'Apply', difficulty: 'Developing', duration: '10–15 minutes', url: 'https://mohamadfauziml.github.io/Variable-Naming/', details: 'In Code Inspection Unit, you examine Python variable declarations and decide whether each name is valid, invalid, or valid but unclear.', evidence: 'You demonstrate learning by diagnosing naming errors, repairing invalid identifiers, and identifying the relevant rule.', purpose: 'Apply Python variable-naming rules correctly.' },
+            { id: 'M3', title: 'Syntax Emergency Lab', stage: 'Repair', difficulty: 'Intermediate', duration: '10–15 minutes', url: 'https://mohamadfauziml.github.io/Syntax-Emergency-Lab/', details: 'In Syntax Emergency Lab, you restore malfunctioning Python programs by correcting quotation marks, parentheses, assignments, and other basic syntax errors.', evidence: 'You demonstrate learning by identifying the faulty statement, applying the correct repair, and confirming that the program can run.', purpose: 'Use correct Python syntax to repair simple programs.' },
+            { id: 'M4', title: 'Client Request Simulator', stage: 'Build', difficulty: 'Capstone', duration: '15–20 minutes', url: 'https://mohamadfauziml.github.io/Client-Request-Simulator/', details: 'In Client Request Simulator, you combine all previous skills to create simple Python programs for realistic client briefs.', evidence: 'You demonstrate learning by independently constructing a syntactically correct program that stores information and produces the required output.', purpose: 'Construct a simple Python program that meets a client request.' }
         ];
+
+        function getProfile() {
+            try {
+                return JSON.parse(localStorage.getItem(PROFILE_KEY) || 'null');
+            } catch (_) {
+                return null;
+            }
+        }
+
+        function getSessionId() {
+            let sessionId = localStorage.getItem(SESSION_KEY);
+            if (!sessionId) {
+                sessionId = 'PBSI-' + Date.now() + '-' + Math.random().toString(36).slice(2, 10);
+                localStorage.setItem(SESSION_KEY, sessionId);
+            }
+            return sessionId;
+        }
 
         function scrollToSection(id) {
             const el = document.getElementById(id) || document.querySelector(`[data-template-id="${id}"]`);
@@ -276,18 +365,134 @@
             document.getElementById(id).classList.remove('hidden');
             document.body.style.overflow = 'hidden';
         }
+
         function closeModal(id) {
             document.getElementById(id).classList.add('hidden');
             document.body.style.overflow = '';
         }
+
         function closeModalBackdrop(e, id) {
             if (e.target === e.currentTarget) closeModal(id);
         }
 
+        function openStudentModal(editMode = false) {
+            const profile = getProfile();
+            if (profile) {
+                document.getElementById('student-name').value = profile.studentName || '';
+                document.getElementById('student-id').value = profile.studentId || '';
+                document.getElementById('class-name').value = profile.className || '';
+            }
+            document.getElementById('student-form-error').classList.add('hidden');
+            openModal('student-modal');
+            setTimeout(() => document.getElementById(editMode ? 'student-name' : (profile ? 'student-name' : 'student-name')).focus(), 50);
+        }
+
+        async function postForm(data) {
+            const response = await fetch(API_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+                body: new URLSearchParams(data).toString()
+            });
+            const result = await response.json();
+            if (!result.success) throw new Error(result.message || 'Submission failed.');
+            return result;
+        }
+
+        async function saveStudentProfile(event) {
+            event.preventDefault();
+
+            const studentName = document.getElementById('student-name').value.trim();
+            const studentId = document.getElementById('student-id').value.trim();
+            const className = document.getElementById('class-name').value.trim();
+            const errorEl = document.getElementById('student-form-error');
+            const button = document.getElementById('save-student-btn');
+
+            if (!studentName || !studentId || !className) {
+                errorEl.textContent = 'Complete Student Name, Student ID and Class.';
+                errorEl.classList.remove('hidden');
+                return;
+            }
+
+            button.disabled = true;
+            button.textContent = 'Initializing...';
+            errorEl.classList.add('hidden');
+
+            try {
+                await postForm({
+                    action: 'saveStudent',
+                    studentName,
+                    studentId,
+                    className,
+                    courseCode: COURSE_CODE,
+                    gameId: GAME_ID
+                });
+
+                localStorage.setItem(PROFILE_KEY, JSON.stringify({
+                    studentName,
+                    studentId,
+                    className,
+                    courseCode: COURSE_CODE,
+                    gameId: GAME_ID
+                }));
+
+                getSessionId();
+                updateStudentUI();
+                closeModal('student-modal');
+                scrollToSection('mission-sequence');
+            } catch (error) {
+                errorEl.textContent = 'Unable to save profile: ' + error.message;
+                errorEl.classList.remove('hidden');
+            } finally {
+                button.disabled = false;
+                button.textContent = 'Initialize Bootcamp';
+            }
+        }
+
+        function updateStudentUI() {
+            const profile = getProfile();
+            const panel = document.getElementById('student-panel');
+            const initializeBtn = document.getElementById('initialize-btn');
+
+            if (profile) {
+                document.getElementById('student-summary').textContent =
+                    `${profile.studentName} | ${profile.studentId} | Class ${profile.className}`;
+                panel.classList.remove('hidden');
+                initializeBtn.textContent = 'Student Profile Ready';
+                initializeBtn.classList.add('btn-disabled');
+            } else {
+                panel.classList.add('hidden');
+                initializeBtn.textContent = 'Initialize Student Profile';
+                initializeBtn.classList.remove('btn-disabled');
+            }
+        }
+
+        function buildMissionUrl(mission) {
+            const profile = getProfile();
+            const params = new URLSearchParams({
+                studentId: profile.studentId,
+                studentName: profile.studentName,
+                className: profile.className,
+                courseCode: COURSE_CODE,
+                gameId: GAME_ID,
+                missionId: mission.id,
+                sessionId: getSessionId(),
+                portalUrl: window.location.href.split('?')[0]
+            });
+            return mission.url + '?' + params.toString();
+        }
+
+        function launchMission(index) {
+            const profile = getProfile();
+            if (!profile) {
+                openStudentModal();
+                return;
+            }
+            window.open(buildMissionUrl(missions[index]), '_blank', 'noopener,noreferrer');
+        }
+
         document.addEventListener('keydown', e => {
             if (e.key === 'Escape') {
-                closeModal('howto-modal');
-                closeModal('details-modal');
+                ['student-modal', 'howto-modal', 'details-modal'].forEach(closeModal);
             }
         });
 
@@ -301,7 +506,7 @@
                 <p><strong>Duration:</strong> ${m.duration}</p>
                 <p>${m.details}</p>
                 <p style="color: var(--text-muted); font-style: italic;">${m.evidence}</p>
-                <a href="${m.url}" target="_blank" rel="noopener noreferrer" class="btn-primary inline-block mt-3 text-sm" aria-label="Launch Mission ${i+1}: ${m.title}">Launch Mission ${i+1}</a>
+                <button class="btn-primary inline-block mt-3 text-sm" onclick="closeModal('details-modal'); launchMission(${i})">Launch Mission ${i+1}</button>
             `;
             openModal('details-modal');
         }
@@ -309,44 +514,92 @@
         function updateCounter() {
             const ta = document.getElementById('reflection-textarea');
             const count = ta.value.length;
-            document.getElementById('char-counter').textContent = `${count} character${count!==1?'s':''} (minimum 50)`;
+            document.getElementById('char-counter').textContent =
+                `${count} character${count !== 1 ? 's' : ''} (minimum 50)`;
             document.getElementById('reflection-error').style.display = 'none';
         }
 
-        function saveReflection() {
+        async function saveReflection() {
+            const profile = getProfile();
             const ta = document.getElementById('reflection-textarea');
-            if (ta.value.length < 50) {
-                const err = document.getElementById('reflection-error');
-                err.textContent = 'Add more detail so your reflection explains how the programming skills worked together.';
-                err.style.display = 'block';
+            const reflection = ta.value.trim();
+            const errorEl = document.getElementById('reflection-error');
+            const submitButton = event && event.currentTarget ? event.currentTarget : null;
+
+            if (!profile) {
+                openStudentModal();
                 return;
             }
-            try { sessionStorage.setItem('bootcamp_reflection', ta.value); } catch(e) {}
-            document.getElementById('completion-msg').classList.remove('hidden');
-            document.getElementById('completion-msg').scrollIntoView({ behavior: 'smooth' });
+
+            if (reflection.length < 50) {
+                errorEl.textContent = 'Add more detail so your reflection explains how the programming skills worked together.';
+                errorEl.style.display = 'block';
+                return;
+            }
+
+            if (submitButton) {
+                submitButton.disabled = true;
+                submitButton.textContent = 'Submitting...';
+            }
+            errorEl.style.display = 'none';
+
+            try {
+                await postForm({
+                    action: 'saveResult',
+                    studentId: profile.studentId,
+                    studentName: profile.studentName,
+                    className: profile.className,
+                    courseCode: COURSE_CODE,
+                    gameId: GAME_ID,
+                    missionId: 'FINAL',
+                    missionTitle: 'Final Learning Reflection',
+                    score: '0',
+                    maxScore: '0',
+                    completionStatus: 'Completed',
+                    timeSpentSeconds: '0',
+                    reflection,
+                    attemptNo: '1',
+                    sessionId: getSessionId()
+                });
+
+                localStorage.setItem(REFLECTION_KEY, reflection);
+                document.getElementById('completion-msg').classList.remove('hidden');
+                document.getElementById('completion-msg').scrollIntoView({ behavior: 'smooth' });
+            } catch (error) {
+                errorEl.textContent = 'Unable to submit reflection: ' + error.message;
+                errorEl.style.display = 'block';
+            } finally {
+                if (submitButton) {
+                    submitButton.disabled = false;
+                    submitButton.textContent = 'Submit Final Reflection';
+                }
+            }
         }
 
         function copyReflection() {
             const ta = document.getElementById('reflection-textarea');
             if (!ta.value) return;
             navigator.clipboard.writeText(ta.value).then(() => {
-                document.getElementById('copy-success').style.display = 'block';
-                setTimeout(() => { document.getElementById('copy-success').style.display = 'none'; }, 4000);
+                const msg = document.getElementById('copy-success');
+                msg.textContent = 'Reflection copied.';
+                msg.style.display = 'block';
+                setTimeout(() => { msg.style.display = 'none'; }, 4000);
             }).catch(() => {
-                document.getElementById('copy-success').textContent = 'Copying was unavailable. Select and copy the link manually.';
-                document.getElementById('copy-success').style.display = 'block';
+                const msg = document.getElementById('copy-success');
+                msg.textContent = 'Copying was unavailable. Select the reflection and copy it manually.';
+                msg.style.display = 'block';
             });
         }
 
-        // Restore reflection from session
         try {
-            const saved = sessionStorage.getItem('bootcamp_reflection');
+            const saved = localStorage.getItem(REFLECTION_KEY);
             if (saved) {
                 document.getElementById('reflection-textarea').value = saved;
                 updateCounter();
             }
-        } catch(e) {}
+        } catch (_) {}
 
+        updateStudentUI();
         lucide.createIcons();
     </script>
  
